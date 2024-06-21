@@ -28,15 +28,18 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '580d-5-77-202-58.ngrok-free.app',
-]
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:8000',
-    'https://580d-5-77-202-58.ngrok-free.app',
-]
+ALLOWED_HOSTS = (
+    os.getenv("ALLOWED_HOSTS").split(",") if os.getenv("ALLOWED_HOSTS") else []
+)
+
+CSRF_TRUSTED_ORIGINS = (
+    os.getenv("CSRF_TRUSTED_ORIGINS").split(",")
+    if os.getenv("CSRF_TRUSTED_ORIGINS")
+    else []
+)
+
+print(ALLOWED_HOSTS, CSRF_TRUSTED_ORIGINS)
 
 
 # Application definition
